@@ -21,6 +21,7 @@ const levelDisplay = document.getElementById("levelDisplay");
 const pointsTotalEl = document.getElementById("pointsTotal");
 const buttonsEl = document.getElementById("colorButtons");
 const resetBtn = document.getElementById("resetBtn");
+const newGameBtn = document.getElementById("newGameBtn");
 const soundToggle = document.getElementById("soundToggle");
 const overlay = document.getElementById("levelOverlay");
 const overlayTitle = document.getElementById("overlayTitle");
@@ -37,6 +38,7 @@ const loseSound = document.getElementById("loseSound");
 function init() {
     buildColorButtons();
     resetBtn.addEventListener("click", () => loadLevel(currentLevel));
+    newGameBtn.addEventListener("click", newGame);
     soundToggle.addEventListener("click", toggleSound);
     overlayBtn.addEventListener("click", handleOverlayConfirm);
     
@@ -44,6 +46,22 @@ function init() {
     const savedLevel = Number(localStorage.getItem('fillerLevel')) || 1;
     loadLevel(savedLevel);
     updateSoundButton();
+    
+    // Initialize Base Mini App SDK
+    initBaseMiniApp();
+}
+
+function initBaseMiniApp() {
+    if (window.EmbedSDK) {
+        window.EmbedSDK.init();
+        console.log('Base Mini App SDK initialized');
+    }
+    
+    // Detect if we're in an embedded environment
+    if (window.self !== window.top || window.ethereum?.isMiniApp) {
+        document.body.classList.add('embedded');
+        console.log('Running in embedded mode');
+    }
 }
 
 function buildColorButtons() {
@@ -231,7 +249,6 @@ function updateSoundButton() {
     soundToggle.textContent = soundEnabled ? "🔊 Sound" : "🔇 Muted";
 }
 
-// New Game function to reset everything
 function newGame() {
     totalPoints = 0;
     localStorage.setItem('fillerPoints', '0');
@@ -240,18 +257,5 @@ function newGame() {
     loadLevel(1);
 }
 
-// Add New Game button to your HTML and connect it
-// <button id="newGameBtn" class="new-game-btn">New Game</button>
-
-// Farcaster Frame Integration
-function initFrame() {
-    if (window.FarcasterFrameSdk) {
-        FarcasterFrameSdk.actions.ready();
-    }
-}
-
 // Start the game
-document.addEventListener("DOMContentLoaded", () => {
-    init();
-    initFrame();
-});
+document.addEventListener("DOMContentLoaded", init);
