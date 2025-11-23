@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- ========== SIMPLE FARCASTER TAGS (Like working apps) ========== -->
+  <meta property="fc:frame" content="vNext" />
+  <meta property="fc:frame:image" content="https://i.imgur.com/DGVIXpm.png" />
+  <meta property="fc:frame:image:aspect_ratio" content="1:1" />
+  <meta property="fc:frame:button:1" content="Play Filler Quest" />
+  <meta property="fc:frame:post_url" content="https://olamihus.vercel.app/" />
+  
+  <!-- Simple Mini App Tag -->
+  <meta name="fc:miniapp" content="https://olamihus.vercel.app/" />
+  
+  <!-- Simple Social Tags -->
+  <meta property="og:title" content="Filler Quest" />
+  <meta property="og:description" content="Fill each board before the moves run out!" />
+  <meta property="og:image" content="https://i.imgur.com/DGVIXpm.png" />
+  <meta property="og:url" content="https://olamihus.vercel.app/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  
+  <title>Filler Quest</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Filler Quest</h1>
+      <p class="subtitle">Fill each board before the moves run out.</p>
+    </header>
+
+    <section class="stats">
+      <div class="chip">Level <span id="levelDisplay">1</span></div>
+      <div class="chip">Moves <span id="moveCount">0</span>/<span id="moveLimit">0</span></div>
+      <div class="chip">Points <span id="pointsTotal">0</span></div>
+    </section>
+
+    <section class="board-wrapper">
+      <div id="board" class="board"></div>
+    </section>
+
+    <section class="controls">
+      <div id="colorButtons" class="color-buttons"></div>
+    </section>
+
+    <div class="game-controls">
+      <button id="resetBtn" class="reset-btn">Restart Level</button>
+      <button id="soundToggle" class="sound-btn">🔊 Sound</button>
+    </div>
+  </div>
+
+  <div id="levelOverlay" class="overlay hidden">
+    <div class="overlay-card">
+      <h2 id="overlayTitle"></h2>
+      <p id="overlayMessage"></p>
+      <button id="overlayBtn">Continue</button>
+    </div>
+  </div>
+
+  <!-- Simple Audio Elements -->
+  <audio id="moveSound" src="https://cdn.jsdelivr.net/gh/itsrealfake/audio-snippets@master/click-soft.mp3" preload="auto"></audio>
+  <audio id="fillSound" src="https://cdn.jsdelivr.net/gh/itsrealfake/audio-snippets@master/pop-soft.mp3" preload="auto"></audio>
+  <audio id="winSound" src="https://cdn.jsdelivr.net/gh/itsrealfake/audio-snippets@master/success-bell.mp3" preload="auto"></audio>
+  <audio id="loseSound" src="https://cdn.jsdelivr.net/gh/itsrealfake/audio-snippets@master/error-tone.mp3" preload="auto"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
