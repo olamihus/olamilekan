@@ -7,15 +7,28 @@
   <!-- ========== BASE MINI APP REQUIRED TAGS ========== -->
   <meta name="mini-app" content="embed-sdk-v1">
   
-  <!-- ========== FARCASTER FRAME TAGS ========== -->
+  <!-- ========== OLD FARCASTER MINI APP FORMAT (for Base.dev preview) ========== -->
+  <meta 
+    name="fc:miniapp" 
+    content='{
+      "version": "next",
+      "imageUrl": "https://i.imgur.com/qvzaD42.png",
+      "button": {
+        "title": "Play Filler Quest",
+        "action": {
+          "type": "launch_frame", 
+          "url": "https://olamilekan-six.vercel.app/"
+        }
+      }
+    }'
+  />
+  
+  <!-- ========== NEW FARCASTER FRAME TAGS ========== -->
   <meta property="fc:frame" content="vNext" />
   <meta property="fc:frame:image" content="https://i.imgur.com/qvzaD42.png" />
   <meta property="fc:frame:image:aspect_ratio" content="1.91:1" />
   <meta property="fc:frame:button:1" content="Play Filler Quest" />
   <meta property="fc:frame:post_url" content="https://olamilekan-six.vercel.app/" />
-  
-  <!-- Farcaster Mini App Tag -->
-  <meta name="fc:miniapp" content="https://olamilekan-six.vercel.app/" />
   
   <!-- ========== SOCIAL TAGS ========== -->
   <meta property="og:title" content="Filler Quest" />
