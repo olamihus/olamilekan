@@ -4,22 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <!-- ========== FARCASTER FRAME TAGS ========== -->
+  <!-- ========== BASE MINI APP TAGS ========== -->
+  <meta name="mini-app" content="embed-sdk-v1">
+  
+  <!-- ========== FARCASTER FRAME TAGS (Like working apps) ========== -->
   <meta property="fc:frame" content="vNext" />
-  <meta property="fc:frame:image" content="https://i.imgur.com/DGVIXpm.png" />
-  <meta property="fc:frame:image:aspect_ratio" content="1:1" />
+  <meta property="fc:frame:image" content="https://i.imgur.com/qvzaD42.png" />
+  <meta property="fc:frame:image:aspect_ratio" content="1.91:1" />
   <meta property="fc:frame:button:1" content="Play Filler Quest" />
   <meta property="fc:frame:post_url" content="https://olamilekan-six.vercel.app/" />
   
-  <!-- Mini App Tag -->
+  <!-- Farcaster Mini App Tag -->
   <meta name="fc:miniapp" content="https://olamilekan-six.vercel.app/" />
   
-  <!-- Social Tags -->
+  <!-- ========== SOCIAL TAGS ========== -->
   <meta property="og:title" content="Filler Quest" />
-  <meta property="og:description" content="Fill each board before the moves run out!" />
-  <meta property="og:image" content="https://i.imgur.com/DGVIXpm.png" />
+  <meta property="og:description" content="Fill each board before the moves run out! A colorful puzzle game." />
+  <meta property="og:image" content="https://i.imgur.com/qvzaD42.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:type" content="website" />
   <meta property="og:url" content="https://olamilekan-six.vercel.app/" />
+  
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Filler Quest" />
+  <meta name="twitter:description" content="Fill each board before the moves run out! A colorful puzzle game." />
+  <meta name="twitter:image" content="https://i.imgur.com/qvzaD42.png" />
   
   <title>Filler Quest</title>
   <link rel="stylesheet" href="style.css" />
@@ -47,6 +57,7 @@
 
     <div class="game-controls">
       <button id="resetBtn" class="reset-btn">Restart Level</button>
+      <button id="newGameBtn" class="new-game-btn">New Game</button>
       <button id="soundToggle" class="sound-btn">🔊 Sound</button>
     </div>
   </div>
@@ -65,6 +76,8 @@
   <audio id="winSound" src="https://cdn.jsdelivr.net/gh/itsrealfake/audio-snippets@master/success-bell.mp3" preload="auto"></audio>
   <audio id="loseSound" src="https://cdn.jsdelivr.net/gh/itsrealfake/audio-snippets@master/error-tone.mp3" preload="auto"></audio>
 
+  <!-- Base Mini App SDK -->
+  <script src="https://embed-sdk.base.org/embed-sdk.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
