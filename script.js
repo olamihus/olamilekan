@@ -9,8 +9,8 @@ let grid = [];
 let activeColor = "";
 let moveCount = 0;
 let moveLimit = 0;
-let totalPoints = 0;
-let soundEnabled = true;
+let totalPoints = Number(localStorage.getItem('fillerPoints')) || 0;
+let soundEnabled = localStorage.getItem('fillerSound') !== 'off';
 let animating = false;
 
 // DOM elements
@@ -40,7 +40,10 @@ function init() {
     soundToggle.addEventListener("click", toggleSound);
     overlayBtn.addEventListener("click", handleOverlayConfirm);
     
-    loadLevel(1);
+    // Load saved level or start from level 1
+    const savedLevel = Number(localStorage.getItem('fillerLevel')) || 1;
+    loadLevel(savedLevel);
+    updateSoundButton();
 }
 
 function buildColorButtons() {
@@ -57,6 +60,8 @@ function buildColorButtons() {
 
 function loadLevel(level) {
     currentLevel = level;
+    localStorage.setItem('fillerLevel', currentLevel.toString());
+    
     const size = 4 + Math.floor((level - 1) / 2);
     moveLimit = Math.max(size * 2, size + 4);
     moveCount = 0;
@@ -170,6 +175,7 @@ function checkGameState() {
     if (allSameColor) {
         const points = Math.max(moveLimit - moveCount, 0) * POINT_MULTIPLIER;
         totalPoints += points;
+        localStorage.setItem('fillerPoints', totalPoints.toString());
         playSound(winSound);
         showOverlay("Level Complete!", `+${points} points!`, "next");
     } else if (moveCount >= moveLimit) {
@@ -217,8 +223,25 @@ function playSound(audio) {
 
 function toggleSound() {
     soundEnabled = !soundEnabled;
+    localStorage.setItem('fillerSound', soundEnabled ? 'on' : 'off');
+    updateSoundButton();
+}
+
+function updateSoundButton() {
     soundToggle.textContent = soundEnabled ? "🔊 Sound" : "🔇 Muted";
 }
+
+// New Game function to reset everything
+function newGame() {
+    totalPoints = 0;
+    localStorage.setItem('fillerPoints', '0');
+    localStorage.setItem('fillerLevel', '1');
+    updateDisplays();
+    loadLevel(1);
+}
+
+// Add New Game button to your HTML and connect it
+// <button id="newGameBtn" class="new-game-btn">New Game</button>
 
 // Farcaster Frame Integration
 function initFrame() {
