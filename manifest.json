@@ -1,0 +1,16 @@
+{
+  "name": "Filler Quest",
+  "short_name": "Filler",
+  "description": "Fill each board before the moves run out",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3367D6",
+  "icons": [
+    {
+      "src": "https://i.imgur.com/qvzaD42.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
